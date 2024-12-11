@@ -1,0 +1,27 @@
+---
+layout: base
+---
+
+<section class="container mx-auto my-10">
+  <h2
+    class="text-4xl font-thin p-5 mb-4 heading-font text-purple-500 text-center"
+    id="prayers"
+  >
+    Devotional Passages
+  </h2>
+  <div class="bg-white shadow-md rounded-lg">
+    {% for prayer in collections.prayers %}
+    <div class="border-b">
+      <button
+        class="w-full text-left px-4 py-2 focus:outline-none"
+        onclick="toggleAccordion('accordion-{{ forloop.index }}')"
+      >
+        <h2 class="text-4xl font-thin heading-font">{{ prayer.data.title }}</h2>
+      </button>
+      <div id="accordion-{{ forloop.index }}" class="hidden px-4 py-2">
+        {{ prayer.content }}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
