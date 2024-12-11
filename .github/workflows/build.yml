@@ -41,8 +41,3 @@ jobs:
         with:
           artifact_name: github-pages
           token: ${{ secrets.GITHUB_TOKEN }}
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
