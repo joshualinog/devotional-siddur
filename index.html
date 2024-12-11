@@ -65,4 +65,21 @@
       </div>
     </section>
   </body>
+  <!-- Add this just before the closing </body> tag -->
+  <script>
+    function toggleAccordion(id) {
+      const content = document.getElementById(id);
+      const allContents = document.querySelectorAll('[id^="accordion-"]');
+
+      // Close all other accordion items
+      allContents.forEach((item) => {
+        if (item.id !== id && !item.classList.contains("hidden")) {
+          item.classList.add("hidden");
+        }
+      });
+
+      // Toggle current accordion item
+      content.classList.toggle("hidden");
+    }
+  </script>
 </html>
