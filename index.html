@@ -3,21 +3,45 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Landing Page</title>
+    <title>Prayer Siddur</title>
+
     <link
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
       rel="stylesheet"
     />
+    <!-- Replace the existing Google Fonts link with: -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jacquard+12&family=Jersey+20&family=Tiny5&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Update the CSS style to: -->
+    <style>
+      .heading-font {
+        font-family: "Jacquard 12", serif;
+      }
+      .tiny5 {
+        font-family: "Tiny5", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+      }
+      .j20 {
+        font-family: "Jersey 20", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+      }
+    </style>
   </head>
   <body class="bg-gray-100">
     <!-- Hero Section -->
     <section class="bg-blue-600 text-white py-20">
       <div class="container mx-auto text-center">
-        <h1 class="text-5xl font-bold mb-4">Prayer Siddur</h1>
-        <p class="text-xl mb-8">Love on Yeshua of Nazareth.</p>
+        <h1 class="text-8xl font-bold mb-4 heading-font">Prayer Siddur</h1>
+        <p class="text-3xl mb-8 tiny5">Love on Yeshua of Nazareth.</p>
         <a
-          href="#"
-          class="bg-white text-blue-600 px-6 py-3 rounded-full font-semibold"
+          href="#prayers"
+          class="bg-white text-blue-600 text-2xl px-6 py-3 rounded-full font-semibold j20"
           >Get Started</a
         >
       </div>
@@ -25,49 +49,20 @@
 
     <!-- Accordion Section -->
     <section class="container mx-auto my-10">
-      <h2 class="text-3xl font-bold mb-4">Prayers</h2>
+      <h2 class="text-3xl font-bold mb-4 heading-font" id="prayers">Prayers</h2>
       <div class="bg-white shadow-md rounded-lg">
         <div class="border-b">
           <button
             class="w-full text-left px-4 py-2 focus:outline-none"
             onclick="toggleAccordion('accordion-1')"
           >
-            <h2 class="text-xl font-semibold">Accordion Item 1</h2>
+            <h2 class="text-xl font-semibold heading-font">Accordion Item 1</h2>
           </button>
           <div id="accordion-1" class="hidden px-4 py-2">
             <p>This is the content for accordion item 1.</p>
           </div>
         </div>
-        <div class="border-b">
-          <button
-            class="w-full text-left px-4 py-2 focus:outline-none"
-            onclick="toggleAccordion('accordion-2')"
-          >
-            <h2 class="text-xl font-semibold">Accordion Item 2</h2>
-          </button>
-          <div id="accordion-2" class="hidden px-4 py-2">
-            <p>This is the content for accordion item 2.</p>
-          </div>
-        </div>
-        <div class="border-b">
-          <button
-            class="w-full text-left px-4 py-2 focus:outline-none"
-            onclick="toggleAccordion('accordion-3')"
-          >
-            <h2 class="text-xl font-semibold">Accordion Item 3</h2>
-          </button>
-          <div id="accordion-3" class="hidden px-4 py-2">
-            <p>This is the content for accordion item 3.</p>
-          </div>
-        </div>
       </div>
     </section>
-
-    <script>
-      function toggleAccordion(id) {
-        const element = document.getElementById(id);
-        element.classList.toggle("hidden");
-      }
-    </script>
   </body>
 </html>
