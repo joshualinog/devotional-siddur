@@ -1,95 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title></title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
-      rel="stylesheet"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Jacquard+12&family=Jersey+20&family=Rubik+Vinyl&family=Tiny5&display=swap"
-      rel="stylesheet"
-    />
-    <!-- styles.liquid -->
-<style>
-  body {
-    font-family: "Jersey 20", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-  }
-  .heading-font {
-    font-family: "Jacquard 12", serif;
-  }
-  .tiny5 {
-    font-family: "Tiny5", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-  }
-  .j20 {
-    font-family: "Jersey 20", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-  }
-  .vinyl {
-    font-family: "Rubik Vinyl", system-ui;
-    font-weight: 400;
-    font-style: normal;
-  }
-
-  .text-purple {
-    color: #a855f7;
-  }
-</style>
-  </head>
-  <body class="bg-gray-100">
-    <section
-  class="relative bg-blue-600 text-white py-20 hero min-h-screen bg-cover bg-center"
-  style="
-    background-image: linear-gradient(
-        rgba(88, 28, 135, 0.3),
-        rgba(169, 85, 247, 0.726)
-      ),
-      url('assets/images/bghero.jpg');
-  "
->
-  <div class="container mx-auto text-center relative z-10">
-    <h1 class="text-8xl font-thin mb-4 heading-font">Prayer Siddur</h1>
-    <p class="text-3xl mb-8 tiny5">
-      To Yeshua of Nazareth <br />
-      the <strong>FACE</strong> and <strong>WORD</strong> of Yahweh
-    </p>
-    <a
-      href="#prayers"
-      class="bg-white text-purple-500 text-2xl px-6 py-3 rounded-full font-semibold j20"
-    >
-      Love on Yeshua Now!
-    </a>
-  </div>
-</section>
-
-    
-<section class="container mx-auto my-10">
-  <h2
-    class="text-4xl font-thin p-5 mb-4 heading-font text-purple-500 text-center"
-    id="prayers"
-  >
-    Devotional Passages
-  </h2>
-  <div class="bg-white shadow-md rounded-lg">
-    
-      <!-- filepath: /Users/yahwehprovides/websites/devotional-siddur/src/_includes/accordion.liquid -->
+<!-- filepath: /Users/yahwehprovides/websites/devotional-siddur/src/_includes/accordion.liquid -->
 <div class="border-b">
   <button
     class="w-full text-left px-4 py-2 focus:outline-none"
-    onclick="toggleAccordion('accordion-1')"
+    onclick="toggleAccordion('accordion-{{ forloop.index }}')"
   >
-    <h2 class="text-gray-600 text-5xl text-center font-thin heading-font">Psalms 28:1-2</h2>
+    <h2 class="text-gray-600 text-5xl text-center font-thin heading-font">{{ prayer.data.passage }}</h2>
   </button>
-  <div id="accordion-1" class="hidden px-4 py-2">
+  <div id="accordion-{{ forloop.index }}" class="hidden px-4 py-2">
     <div class="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
       <div
         class="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-10"
@@ -119,7 +36,7 @@
               <div
                 class="text-sm absolute top-0 right-0 bg-purple-500 px-4 text-white rounded-full h-16 w-16 flex flex-col items-center justify-center mt-3 mr-3 hover:bg-white hover:text-indigo-600 transition duration-500 ease-in-out"
               >
-                <span class="font-bold text-2xl">LEB+</span>
+                <span class="font-bold text-2xl">{{prayer.data.englishVersion}}</span>
                 
               </div>
             </a>
@@ -128,10 +45,10 @@
             <a
               href="#"
               class="font-semibold text-lg inline-block hover:text-indigo-600 transition duration-500 ease-in-out"
-              >Psalms 28:1-2</a
+              >{{prayer.data.passage}}</a
             >
             <p class="text-gray-500 text-sm">
-             To you, O Yahweh, I call. O my rock, do not be deaf to me. Or else, if you are silent to me, then I will become like those descending to the pit.  Hear the voice of my supplications when I cry to you for help, when I lift up my hands toward your holy inner sanctuary, the place your Word speaks to me.
+             {{prayer.data.english}}
             </p>
           </div>
           <div class="px-6 py-4 flex flex-row items-center">
@@ -164,13 +81,9 @@
               </svg>
               
             
-            
+            {% for tag in prayer.data.tags %}
               <span class="ml-1">tag</span>
-            
-              <span class="ml-1">tag</span>
-            
-              <span class="ml-1">tag</span>
-            
+            {% endfor %}
             </span>
           </div>
         </div>
@@ -199,7 +112,7 @@
               <div
                 class="text-sm absolute top-0 right-0 bg-purple-500 px-4 text-white rounded-full h-16 w-16 flex flex-col items-center justify-center mt-3 mr-3 hover:bg-white hover:text-indigo-600 transition duration-500 ease-in-out"
               >
-                <span class="font-bold text-2xl">MT</span>
+                <span class="font-bold text-2xl">{{prayer.data.hebrewVersion}}</span>
                 
               </div>
             </a>
@@ -208,10 +121,10 @@
             <a
               href="#"
               class="font-semibold text-lg inline-block hover:text-indigo-600 transition duration-500 ease-in-out"
-              >Psalms 28:1-2</a
+              >{{prayer.data.passage}}</a
             >
             <p class="text-gray-500 text-sm">
-             לְדָוִד אֵלֶיךָ יְהוָה׀ אֶקְרָא צוּרִי אַֽל־תֶּחֱרַשׁ מִמֶּנִּי פֶּן־תֶּֽחֱשֶׁה מִמֶּנִּי וְנִמְשַׁלְתִּי עִם־יוֹרְדֵי בֽוֹר׃ 2שְׁמַע קוֹל תַּחֲנוּנַי בְּשַׁוְּעִי אֵלֶיךָ בְּנָשְׂאִי יָדַי אֶל־דְּבִיר קָדְשֶֽׁךָ׃
+             {{prayer.data.hebrew}}
             </p>
           </div>
           <div class="px-6 py-4 flex flex-row items-center">
@@ -244,13 +157,9 @@
               </svg>
               
             
-            
+            {% for tag in prayer.data.tags %}
               <span class="ml-1">tag</span>
-            
-              <span class="ml-1">tag</span>
-            
-              <span class="ml-1">tag</span>
-            
+            {% endfor %}
             </span>
           </div>
         </div>
@@ -279,7 +188,7 @@
               <div
                 class="text-sm absolute top-0 right-0 bg-purple-500 px-4 text-white rounded-full h-16 w-16 flex flex-col items-center justify-center mt-3 mr-3 hover:bg-white hover:text-indigo-600 transition duration-500 ease-in-out"
               >
-                <span class="font-bold text-2xl">BTJ</span>
+                <span class="font-bold text-2xl">{{prayer.data.blockTalkVersion}}</span>
                 
               </div>
             </a>
@@ -288,10 +197,10 @@
             <a
               href="#"
               class="font-semibold text-lg inline-block hover:text-indigo-600 transition duration-500 ease-in-out"
-              >Psalms 28:1-2</a
+              >{{prayer.data.passage}}</a
             >
             <p class="text-gray-500 text-sm">
-             [block talk]
+             {{prayer.data.blockTalk}}
             </p>
           </div>
           <div class="px-6 py-4 flex flex-row items-center">
@@ -324,13 +233,9 @@
               </svg>
               
             
-            
+            {% for tag in prayer.data.tags %}
               <span class="ml-1">tag</span>
-            
-              <span class="ml-1">tag</span>
-            
-              <span class="ml-1">tag</span>
-            
+            {% endfor %}
             </span>
           </div>
         </div>
@@ -338,25 +243,3 @@
     </div>
   </div>
 </div>
-    
-  </div>
-</section>
-    <!-- scripts.liquid -->
-<script>
-    function toggleAccordion(id) {
-      const content = document.getElementById(id);
-      const allContents = document.querySelectorAll('[id^="accordion-"]');
-
-      // Close all other accordion items
-      allContents.forEach((item) => {
-        if (item.id !== id && !item.classList.contains("hidden")) {
-          item.classList.add("hidden");
-        }
-      });
-
-      // Toggle current accordion item
-      content.classList.toggle("hidden");
-    }
-  </script>
-  </body>
-</html>
