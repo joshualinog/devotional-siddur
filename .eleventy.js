@@ -1,5 +1,8 @@
-module.exports = function (eleventyConfig) {
+module.exports = (eleventyConfig) => {
   eleventyConfig.addPassthroughCopy("src/assets");
+  eleventyConfig.addCollection("prayers", (collectionApi) =>
+    collectionApi.getFilteredByGlob("src/prayers/*.md")
+  );
 
   return {
     dir: {

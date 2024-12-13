@@ -81,12 +81,38 @@
   </h2>
   <div class="bg-white shadow-md rounded-lg">
     
+    <div class="border-b">
+      <button
+        class="w-full text-left px-4 py-2 focus:outline-none"
+        onclick="toggleAccordion('accordion-1')"
+      >
+        <h2 class="text-4xl font-thin heading-font">Verse passage (Bk.1.1.-1.2)</h2>
+      </button>
+      <div id="accordion-1" class="hidden px-4 py-2">
+        <p>[Prayer content here]</p>
+
+      </div>
+    </div>
+    
   </div>
 </section>
 
     <!-- scripts.liquid -->
 <script>
-  // Your JavaScript code here
-</script>
+    function toggleAccordion(id) {
+      const content = document.getElementById(id);
+      const allContents = document.querySelectorAll('[id^="accordion-"]');
+
+      // Close all other accordion items
+      allContents.forEach((item) => {
+        if (item.id !== id && !item.classList.contains("hidden")) {
+          item.classList.add("hidden");
+        }
+      });
+
+      // Toggle current accordion item
+      content.classList.toggle("hidden");
+    }
+  </script>
   </body>
 </html>

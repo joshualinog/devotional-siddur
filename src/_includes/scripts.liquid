@@ -1,4 +1,17 @@
 <!-- scripts.liquid -->
 <script>
-  // Your JavaScript code here
-</script>
+    function toggleAccordion(id) {
+      const content = document.getElementById(id);
+      const allContents = document.querySelectorAll('[id^="accordion-"]');
+
+      // Close all other accordion items
+      allContents.forEach((item) => {
+        if (item.id !== id && !item.classList.contains("hidden")) {
+          item.classList.add("hidden");
+        }
+      });
+
+      // Toggle current accordion item
+      content.classList.toggle("hidden");
+    }
+  </script>
