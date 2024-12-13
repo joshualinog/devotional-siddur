@@ -5,6 +5,7 @@ module.exports = (eleventyConfig) => {
   );
 
   return {
+    pathPrefix: "/devotional-siddur/",
     dir: {
       input: "src",
       output: "docs",
