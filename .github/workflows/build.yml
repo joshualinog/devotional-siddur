@@ -1,5 +1,10 @@
 name: Build and Deploy
-on: [push]
+on:
+  push:
+    branches:
+      - "**"
+    tags:
+      - "**"
 
 permissions:
   contents: read
@@ -29,7 +34,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: docs
+          path: _site
 
   deploy:
     needs: build
