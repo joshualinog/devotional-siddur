@@ -3,9 +3,7 @@ name: Build and Deploy
 on:
   push:
     branches:
-      - "**"
-    tags:
-      - "**"
+      - master
 
 permissions:
   contents: read
@@ -13,24 +11,24 @@ permissions:
   id-token: write
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0 # Ensure full history is fetched for proper git operations
+        uses: actions/checkout@v2
 
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v1
         with:
-          node-version: "18"
+          node-version: "18.x"
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
-
-      - name: Clean output directory
-        run: rm -rf docs
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
       - name: Install dependencies
         run: npm ci
@@ -41,6 +39,6 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           publish_dir: docs
           publish_branch: gh-pages
