@@ -1,5 +1,4 @@
 name: Build and Deploy
-
 on:
   push:
     branches:
@@ -16,8 +15,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
       - name: Setup Node
         uses: actions/setup-node@v3
@@ -26,9 +24,6 @@ jobs:
 
       - name: Setup Pages
         uses: actions/configure-pages@v3
-
-      - name: Clean output directory
-        run: rm -rf docs
 
       - name: Install dependencies
         run: npm ci
@@ -51,7 +46,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: docs
-          publish_branch: gh-pages
