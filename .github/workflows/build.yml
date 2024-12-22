@@ -1,48 +1,51 @@
-name: Build and Deploy
+name: build and deploy
+
 on:
+  workflow_dispatch:
   push:
     branches:
-      - "**"
-    tags:
-      - "**"
+      - main
 
 permissions:
   contents: read
   pages: write
   id-token: write
 
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    # defaults:
+    #   run:
+    #     working-directory: .app
     steps:
-      - uses: actions/checkout@v3
-
-      - name: Setup Node
-        uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
         with:
-          node-version: "18"
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
-
+          fetch-depth: 0 # Fetch all history for git info
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
       - name: Install dependencies
         run: npm ci
-
-      - name: Build site
+        # run: npm install
+      - name: Build
         run: npm run build
-
+        # run: npm run build
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
           path: docs
 
   deploy:
     needs: build
-    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4
