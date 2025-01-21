@@ -7,7 +7,7 @@ assignees: ''
 
 ---
 
-# Psalms 27:4
+# bookName 00.00
 
 ## BLOCK TALK
 
@@ -26,9 +26,9 @@ assignees: ''
 
 ## אַחַת שָׁאַלְתִּי מֵאֵת־יְהוָה אוֹתָהּ אֲבַקֵּשׁ שִׁבְתִּי בְּבֵית־יְהוָה כָּל־יְמֵי חַיַּי לַחֲזוֹת בְּנֹעַם־יְהוָה וּלְבַקֵּר בְּהֵיכָלוֹ:
 
-**_Psalms 27:4 HB2 27:4_** 
+**_bookName 00.00 hebrewVersionName_** 
 
 ## English
 ### One thing I have asked from Yahweh;  it I will seek:  that I may dwell in the house of Yahweh all the days of my life,  to behold the beauty of Yahweh,  and to consider his temple.
 
-**_Psalms 27:4 LEB_**
+**_bookName 00.00 hebrewVersionName_**
